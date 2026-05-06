@@ -79,6 +79,7 @@ try {
 } catch {
     Write-Host "      Twilio auth failed. Check SID/token in script." -ForegroundColor Red
 }
+}
 
 Write-Host ""
 Write-Host "======================================" -ForegroundColor Cyan

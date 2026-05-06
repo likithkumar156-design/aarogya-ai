@@ -1,0 +1,295 @@
+
+> aarogya-ai@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.136.1:3000
+- Environments: .env
+✓ Ready in 1292ms
+Creating turbopack project { dir: 'c:\\Users\\kiran\\Desktop\\Demo Aragoya AI', testMode: true }
+
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+○ Compiling /[locale] ...
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+Error: Can't resolve 'tailwindcss' in 'c:\Users\kiran\Desktop'
+    [2m[at finishWithoutResolve (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:909:18)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1001:14][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:16:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
+    [2m[at c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\enhanced-resolve\lib\Resolver.js:1080:5][0m
+    [2m[at eval (eval at create (c:\Users\kiran\Desktop\Demo Aragoya AI\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m {
+  details: "resolve 'tailwindcss' in 'c:\\Users\\kiran\\Desktop'\n" +
+    '  Parsed request is a module\n' +
+    '  No description file found in c:\\Users\\kiran\\Desktop or above\n' +
+    '  resolve as module\n' +
+    "    c:\\Users\\kiran\\Desktop\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\kiran\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\Users\\node_modules doesn't exist or is not a directory\n" +
+    "    c:\\node_modules doesn't exist or is not a directory"
+}
+[?25h
+
+c:\Users\kiran\Desktop\Demo Aragoya AI>

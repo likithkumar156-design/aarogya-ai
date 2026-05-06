@@ -282,8 +282,8 @@ export default function ChatPage() {
             </div>
             <div>
               <h1 className="font-bold text-2xl tracking-tight text-white">Aarogya AI Web Portal</h1>
-              <span className="text-sm text-primary flex items-center gap-2 font-medium">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span className="text-sm text-green-400 flex items-center gap-2 font-medium">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
                 {isSpeaking ? "Voice Assistant Speaking..." : "Live Connection"}
               </span>
             </div>

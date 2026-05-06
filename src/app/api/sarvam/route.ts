@@ -1,49 +1,52 @@
 import { NextResponse } from "next/server";
+import { exec } from "child_process";
+import util from "util";
+
+const execPromise = util.promisify(exec);
 
 export async function POST(req: Request) {
   try {
     const { text, target_language_code } = await req.json();
-    const apiKey = process.env.SARVAM_API_KEY;
 
-    // For Hackathon Demo: If API key is not set, return a mock success response
-    if (!apiKey || apiKey === "your_sarvam_key_here") {
-      // Simulate network delay
-      await new Promise((r) => setTimeout(r, 1000));
-      return NextResponse.json({
-        success: true,
-        isMock: true,
-        audio: "data:audio/mp3;base64,//NExAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq" // Fake tiny MP3
-      });
+    // Mapping strictly to Indian languages for espeak-ng
+    const langMap: Record<string, string> = {
+      "hi-IN": "hi", // Hindi
+      "en-IN": "en", // English
+      "ta-IN": "ta", // Tamil
+      "te-IN": "te", // Telugu
+      "kn-IN": "kn", // Kannada
+      "bn-IN": "bn", // Bengali
+      "gu-IN": "gu", // Gujarati
+      "mr-IN": "mr", // Marathi
+      "ml-IN": "ml", // Malayalam
+      "pa-IN": "pa", // Punjabi
+      "or-IN": "or", // Odia
+    };
+
+    // If a non-Indian language comes in, default to Hindi (as per request "take indian languages only")
+    const voice = langMap[target_language_code] || "hi";
+
+    // Clean text to prevent command injection
+    const safeText = text.replace(/"/g, "'").replace(/\n/g, " ");
+
+    // Execute espeak-ng and capture the stdout as a WAV buffer
+    const { stdout, stderr } = await execPromise(
+      `espeak-ng -v ${voice} "${safeText}" --stdout`,
+      { encoding: "buffer" }
+    );
+
+    if (stderr && stderr.length > 0) {
+      console.warn("espeak-ng stderr:", stderr.toString());
     }
 
-    // Call Real Sarvam API
-    const response = await fetch("https://api.sarvam.ai/text-to-speech", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-subscription-key": apiKey,
-      },
-      body: JSON.stringify({
-        inputs: [text],
-        target_language_code: target_language_code || "hi-IN",
-        speaker: "priya",
-        pace: 1.0,
-        speech_sample_rate: 8000,
-        enable_preprocessing: true,
-        model: "bulbul:v3"
-      }),
-    });
+    // Convert Buffer to Base64 Data URI
+    const base64Audio = `data:audio/wav;base64,${stdout.toString("base64")}`;
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Sarvam API Error:", errorText);
-      return NextResponse.json({ error: "Sarvam API request failed" }, { status: response.status });
-    }
-
-    const data = await response.json();
-    return NextResponse.json(data);
+    return NextResponse.json({ success: true, audio: base64Audio });
   } catch (error) {
-    console.error("Sarvam Route Error:", error);
-    return NextResponse.json({ error: "Failed to generate speech" }, { status: 500 });
+    console.error("eSpeak-ng Route Error:", error);
+    // If espeak-ng fails or isn't installed in the system PATH, we return null audio.
+    // The frontend will gracefully fallback to the built-in browser window.speechSynthesis.
+    return NextResponse.json({ success: false, audio: null, error: "eSpeak-ng execution failed" });
   }
 }

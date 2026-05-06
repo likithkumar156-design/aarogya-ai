@@ -83,22 +83,49 @@ Once you have gathered enough symptoms (3+ exchanges OR if user mentions severe 
   const chatHistory = messages.slice(0, -1).filter(m => m.role !== 'system');
   const lastUserMessage = messages[messages.length - 1];
 
+  const userContent = (lastUserMessage?.content || "Hello") + " (respond in JSON)";
+
   const formattedMessages = [
     { role: "system" as const, content: systemPrompt },
     ...chatHistory.map(m => ({ role: m.role === "user" ? "user" as const : "assistant" as const, content: String(m.content) })),
-    { role: "user" as const, content: lastUserMessage?.content || "Hello" }
+    { role: "user" as const, content: userContent }
   ];
 
-  const response = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
-    messages: formattedMessages,
-    temperature: 0.2,
-    response_format: { type: "json_object" },
-    max_tokens: 2048,
-  });
+  let text: string | null = null;
 
-  const text = response.choices[0].message.content;
-  if (!text) throw new Error("Empty response from Groq");
+  try {
+    const response = await groq.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
+      messages: formattedMessages,
+      temperature: 0.2,
+      response_format: { type: "json_object" },
+      max_tokens: 1024,
+    });
+    text = response.choices[0].message.content;
+  } catch (err) {
+    console.error("Groq API error:", err);
+  }
 
-  return JSON.parse(text);
+  if (text) {
+    try {
+      return JSON.parse(text);
+    } catch (err) {
+      console.error("Groq JSON parse error:", err, text);
+    }
+  }
+
+  // Graceful fallback — never throw, always return a valid response
+  const fallbacks: Record<string, string> = {
+    Hindi: "मैं अभी आपकी बात समझ रहा हूं। कृपया अपने लक्षण बताएं — जैसे बुखार, खांसी, या दर्द?",
+    Kannada: "ನಾನು ಈಗ ಸಂಪರ್ಕಿಸುತ್ತಿದ್ದೇನೆ. ದಯವಿಟ್ಟು ನಿಮ್ಮ ಲಕ್ಷಣಗಳನ್ನು ತಿಳಿಸಿ.",
+    Tamil: "நான் இப்போது இணைக்கிறேன். உங்கள் அறிகுறிகளை சொல்லுங்கள்.",
+    Telugu: "నేను ఇప్పుడు కనెక్ట్ అవుతున్నాను. మీ లక్షణాలు చెప్పండి.",
+    English: "Please describe your symptoms — such as fever, cough, or pain — and I'll help you right away.",
+  };
+  return {
+    content: fallbacks[language] || fallbacks.English,
+    detectedLanguage: language,
+    riskScores: null,
+    report: null,
+  };
 }

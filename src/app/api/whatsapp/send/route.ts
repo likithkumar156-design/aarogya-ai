@@ -18,7 +18,6 @@ export async function POST(req: Request) {
     if (!accountSid || accountSid === "your_twilio_sid_here" || !authToken || authToken === "your_twilio_auth_token_here") {
       // Mock mode: log the message and simulate delay
       console.log(`[MOCK TWILIO] Would send to ${toNumber}: ${Body}`);
-      await new Promise(r => setTimeout(r, 1500));
       return NextResponse.json({ success: true, isMock: true, message: "Mock message sent successfully!" });
     }
 

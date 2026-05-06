@@ -3,7 +3,52 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { HeartPulse, Bot, Languages, Shield, Phone } from "lucide-react";
+import { HeartPulse } from "lucide-react";
+
+// Brand logo SVG components
+const GeminiLogo = () => (
+  <svg width="32" height="32" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M96 20C96 20 120 72 172 96C120 120 96 172 96 172C96 172 72 120 20 96C72 72 96 20 96 20Z" fill="url(#gemini-grad)"/>
+    <defs>
+      <linearGradient id="gemini-grad" x1="20" y1="20" x2="172" y2="172" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#4285F4"/>
+        <stop offset="1" stopColor="#0F9D58"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const BhashiniLogo = () => (
+  <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="16" fill="#FF6B00"/>
+    <text x="50" y="68" textAnchor="middle" fontSize="52" fontWeight="bold" fill="white" fontFamily="serif">भ</text>
+  </svg>
+);
+
+const AbdmLogo = () => (
+  <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="16" fill="#1B5E20"/>
+    <path d="M50 20 L50 80 M30 50 L70 50" stroke="white" strokeWidth="10" strokeLinecap="round"/>
+    <circle cx="50" cy="50" r="28" stroke="white" strokeWidth="6" fill="none"/>
+  </svg>
+);
+
+const TwilioLogo = () => (
+  <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="50" fill="#F22F46"/>
+    <circle cx="35" cy="35" r="10" fill="white"/>
+    <circle cx="65" cy="35" r="10" fill="white"/>
+    <circle cx="35" cy="65" r="10" fill="white"/>
+    <circle cx="65" cy="65" r="10" fill="white"/>
+  </svg>
+);
+
+const GroqLogo = () => (
+  <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="16" fill="#F55036"/>
+    <text x="50" y="68" textAnchor="middle" fontSize="38" fontWeight="900" fill="white" fontFamily="sans-serif">G</text>
+  </svg>
+);
 
 const HERO_PHRASES = [
   { text: "Healthcare for Every Indian", lang: "en", color: "", scriptClass: "" },
@@ -144,9 +189,9 @@ export default function LandingPage() {
               <div className="pt-8 border-t border-slate-200">
                 <p className="text-xs font-label-caps text-on-surface-variant mb-4 font-bold">TRUSTED ECOSYSTEM PARTNERS</p>
                 <div className="flex flex-wrap gap-8 opacity-60 grayscale hover:grayscale-0 transition-all">
-                  <div className="flex items-center gap-2 font-bold text-lg text-slate-700"><Bot className="w-5 h-5 text-blue-600"/> Gemini</div>
-                  <div className="flex items-center gap-2 font-bold text-lg text-slate-700"><Languages className="w-5 h-5 text-orange-500"/> Bhashini</div>
-                  <div className="flex items-center gap-2 font-bold text-lg text-slate-700"><Shield className="w-5 h-5 text-green-600"/> ABDM</div>
+                  <div className="flex items-center gap-2 font-bold text-lg text-slate-700"><GeminiLogo /> Gemini</div>
+                  <div className="flex items-center gap-2 font-bold text-lg text-slate-700"><BhashiniLogo /> Bhashini</div>
+                  <div className="flex items-center gap-2 font-bold text-lg text-slate-700"><AbdmLogo /> ABDM</div>
                 </div>
               </div>
             </div>
@@ -207,13 +252,11 @@ export default function LandingPage() {
           <div className="max-w-7xl mx-auto px-6 text-center">
             <p className="text-xs font-label-caps text-on-surface-variant mb-8 tracking-widest font-bold">POWERED BY</p>
             <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-              <div className="flex items-center gap-3"><Bot className="w-8 h-8 text-blue-600"/><span className="font-bold text-2xl text-slate-800">Gemini</span></div>
-              <div className="flex items-center gap-3"><Languages className="w-8 h-8 text-orange-500"/><span className="font-bold text-2xl text-slate-800">Bhashini</span></div>
-              <div className="flex items-center gap-3"><Shield className="w-8 h-8 text-green-600"/><span className="font-bold text-2xl text-slate-800">ABDM</span></div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-8 h-8 text-red-500" />
-                <span className="font-bold text-2xl tracking-tighter text-slate-800">Twilio</span>
-              </div>
+              <div className="flex items-center gap-3"><GeminiLogo /><span className="font-bold text-2xl text-slate-800">Gemini</span></div>
+              <div className="flex items-center gap-3"><BhashiniLogo /><span className="font-bold text-2xl text-slate-800">Bhashini</span></div>
+              <div className="flex items-center gap-3"><AbdmLogo /><span className="font-bold text-2xl text-slate-800">ABDM</span></div>
+              <div className="flex items-center gap-3"><TwilioLogo /><span className="font-bold text-2xl tracking-tighter text-slate-800">Twilio</span></div>
+              <div className="flex items-center gap-3"><GroqLogo /><span className="font-bold text-2xl text-slate-800">Groq</span></div>
             </div>
           </div>
         </section>
@@ -544,7 +587,7 @@ export default function LandingPage() {
                   <p className="text-sm text-on-surface-variant mb-8 italic">"Now I don't have to go to the city to see a doctor. Aarogya AI helped me."</p>
                 </div>
                 <div className="flex items-center gap-4 mt-auto">
-                  <img alt="Ramesh Kumar" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHr9ySInKjE7pM5vX-H0x0-lU_Z0v3uY0_R8zS_X0-Z0v3uY0_R8zS_X0-Z0v3uY0_R8zS_X0-Z0v3uY0_R8zS_X0-Z0v3uY0_R8zS_X0-Z0v3uY0_R8zS_X0-Z0v3uY0_R8zS_X0-Z0v3uY0_R8zS_X0"/>
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white font-bold text-xl">R</div>
                   <div>
                     <p className="font-bold text-on-surface">Ramesh Kumar</p>
                     <p className="text-xs text-on-surface-variant">Vidisha, Madhya Pradesh</p>
@@ -557,7 +600,7 @@ export default function LandingPage() {
                   <p className="font-body-md text-on-surface leading-relaxed mb-8 italic">"As an ASHA worker, this tool helps me track my village's health data instantly. It's like having a specialist in my pocket."</p>
                 </div>
                 <div className="flex items-center gap-4 mt-auto">
-                  <img alt="Sunita Devi" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P_P"/>
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl">S</div>
                   <div>
                     <p className="font-bold text-on-surface">Sunita Devi</p>
                     <p className="text-xs text-on-surface-variant">Ranchi, Jharkhand</p>
@@ -570,7 +613,7 @@ export default function LandingPage() {
                   <p className="font-body-md text-on-surface leading-relaxed mb-8 italic">"The AI triage is remarkably accurate. It allows us to focus our resources on the most critical cases first, saving precious time."</p>
                 </div>
                 <div className="flex items-center gap-4 mt-auto">
-                  <img alt="Dr. Arjun Rao" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D_D"/>
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-white font-bold text-xl">A</div>
                   <div>
                     <p className="font-bold text-on-surface">Dr. Arjun Rao</p>
                     <p className="text-xs text-on-surface-variant">Apollo Hospitals, Hyderabad</p>
