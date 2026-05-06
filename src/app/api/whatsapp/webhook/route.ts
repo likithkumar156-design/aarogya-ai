@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import twilio from "twilio";
+import { analyzeSymptoms } from "@/lib/dataset-engine";
 import { generateChatResponse } from "@/lib/groq";
 
 const MessagingResponse = twilio.twiml.MessagingResponse;
@@ -52,8 +53,26 @@ export async function POST(req: Request) {
     // Add user message to history
     session.history.push({ role: "user", content: body });
 
-    // Call Groq with the session's remembered language
-    const aiResponse = await generateChatResponse(session.history, activeLang);
+    // Dataset engine always runs first (risk scores, report)
+    const datasetResponse = analyzeSymptoms(session.history, activeLang);
+
+    // Try Groq for natural conversational text, fall back to dataset
+    let aiResponse = datasetResponse;
+    try {
+      const groqResponse = await generateChatResponse(session.history, activeLang);
+      if (groqResponse?.content) {
+        aiResponse = {
+          ...datasetResponse,
+          content: groqResponse.content,
+          detectedLanguage: groqResponse.detectedLanguage || activeLang,
+          // Dataset risk scores take priority; use Groq only if dataset found nothing
+          riskScores: datasetResponse.riskScores || groqResponse.riskScores,
+          report:     datasetResponse.report     || groqResponse.report,
+        };
+      }
+    } catch {
+      // Groq failed — use dataset response silently
+    }
 
     // Add AI response to history
     session.history.push({ role: "model", content: aiResponse.content });

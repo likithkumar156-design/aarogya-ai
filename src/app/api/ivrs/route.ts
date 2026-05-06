@@ -1,80 +1,146 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Twilio sends POST requests to this endpoint when someone calls
+/**
+ * Twilio IVRS endpoint for Aarogya AI health screening.
+ *
+ * Flow:
+ *  1. No `step`  → language menu (Gather → action?step=lang)
+ *  2. step=lang  → Q1 cough screening (Gather → action?step=q1&lang=<code>)
+ *  3. step=q1    → Q2 night-sweats    (Gather → action?step=q2&lang=<code>)
+ *  4. step=q2    → Q3 weight loss     (Gather → action?step=q3&lang=<code>)
+ *  5. step=q3    → Final result & hang up
+ *
+ * ⚠️  Twilio requires ABSOLUTE URLs in <Gather action="..."> — not relative paths.
+ *     Set BASE_URL in .env to your tunnel URL, e.g. https://xxxx.trycloudflare.com
+ */
 export async function POST(req: NextRequest) {
-  const formData = await req.formData();
-  const digits   = formData.get("Digits") as string | null;
-  
-  // Using req.url to reliably capture query params like ?step=q1&lang=hi-IN
-  // while falling back to CallSid just in case
-  const callSid  = req.url.includes("?") ? req.url : (formData.get("CallSid") as string || "default");
+  // ── Resolve base URL for action attributes ────────────────────────────────
+  // Priority: BASE_URL env var → derived from the incoming request host
+  const baseUrl =
+    process.env.BASE_URL?.replace(/\/$/, "") ||
+    `${req.nextUrl.protocol}//${req.nextUrl.host}`;
 
-  const twiml = buildTwiML(digits, callSid);
+  // ── Read state from query string (carried forward each turn by us) ─────────
+  const { searchParams } = req.nextUrl;
+  const step = searchParams.get("step") ?? "";       // "", "lang", "q1", "q2", "q3"
+  const lang = searchParams.get("lang") ?? "en-IN"; // propagated each turn
+
+  // ── Digit pressed by caller (null on first call) ──────────────────────────
+  const formData = await req.formData();
+  const digits = formData.get("Digits") as string | null;
+
+  const twiml = buildTwiML(step, lang, digits, baseUrl);
 
   return new NextResponse(twiml, {
-    headers: { "Content-Type": "text/xml" },
+    headers: { "Content-Type": "text/xml; charset=utf-8" },
   });
 }
 
-function buildTwiML(digits: string | null, callSid: string): string {
-  // ── No digits yet = first call = language menu ──
-  if (!digits) {
-    return `<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-  <Gather numDigits="1" action="/api/ivrs?step=lang">
-    <Say>
-      Aarogya AI mein aapka swagat hai.
-      Hindi ke liye 1 dabayen.
-      English ke liye 2 dabayen.
-      Tamil ke liye 3 dabayen.
-    </Say>
-  </Gather>
-  <Say>Koi input nahi mila. Phir se call karein.</Say>
-</Response>`;
+// ─────────────────────────────────────────────────────────────────────────────
+// TwiML helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** <Say> verb — Twilio built-in TTS */
+function say(text: string, language = "en-IN") {
+  return `<Say language="${language}">${text}</Say>`;
+}
+
+/**
+ * <Gather> verb with a POST action.
+ * Uses full absolute URL — Twilio REQUIRES this.
+ */
+function gather(action: string, children: string, numDigits = 1) {
+  return `<Gather numDigits="${numDigits}" action="${action}" method="POST">${children}</Gather>`;
+}
+
+/** Wrap body in XML + <Response> */
+function xml(body: string) {
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<Response>\n${body}\n</Response>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Main flow builder
+// ─────────────────────────────────────────────────────────────────────────────
+
+function buildTwiML(
+  step: string,
+  lang: string,
+  digits: string | null,
+  base: string
+): string {
+
+  // ── STEP 0: Language menu (first call, no step yet) ───────────────────────
+  if (!step) {
+    return xml(
+      gather(
+        `${base}/api/ivrs?step=lang`,
+        say(
+          "Aarogya AI mein aapka swagat hai. " +
+          "Hindi ke liye 1 dabayen. " +
+          "English ke liye 2 dabayen. " +
+          "Tamil ke liye 3 dabayen."
+        )
+      ) +
+      "\n  " + say("Koi input nahi mila. Phir se call karein.")
+    );
   }
 
-  // ── Language selected ──
-  if (!callSid.includes("q")) {
-    const lang = digits === "1" ? "hi-IN" : digits === "3" ? "ta-IN" : "en-IN";
-    const q1   = lang === "hi-IN"
-      ? "Kya aapko 2 hafte se zyada khansi hai? Haan ke liye 1, Nahi ke liye 2."
+  // ── STEP lang: Language chosen → ask Q1 ──────────────────────────────────
+  if (step === "lang") {
+    const selectedLang =
+      digits === "1" ? "hi-IN" :
+      digits === "3" ? "ta-IN" : "en-IN";
+
+    const q1 =
+      selectedLang === "hi-IN"
+        ? "Kya aapko 2 hafte se zyada khansi hai? Haan ke liye 1, Nahi ke liye 2 dabayen."
+        : selectedLang === "ta-IN"
+        ? "Ungalukku 2 vaaram maelum irumal irukkirataa? Aam enraal 1, illai enraal 2."
+        : "Do you have a cough for more than 2 weeks? Press 1 for Yes, 2 for No.";
+
+    return xml(
+      gather(`${base}/api/ivrs?step=q1&lang=${selectedLang}`, say(q1, selectedLang))
+    );
+  }
+
+  // ── STEP q1: Q1 answered → ask Q2 ────────────────────────────────────────
+  if (step === "q1") {
+    const q2 =
+      lang === "hi-IN"
+        ? "Kya aapko raat ko pasina aata hai? 1 dabayen haan ke liye, 2 dabayen nahi ke liye."
+        : lang === "ta-IN"
+        ? "Ungalukku iravu viyarvai varukirtaa? 1 aam, 2 illai."
+        : "Do you experience night sweats? Press 1 for Yes, 2 for No.";
+
+    return xml(
+      gather(`${base}/api/ivrs?step=q2&lang=${lang}`, say(q2, lang))
+    );
+  }
+
+  // ── STEP q2: Q2 answered → ask Q3 ────────────────────────────────────────
+  if (step === "q2") {
+    const q3 =
+      lang === "hi-IN"
+        ? "Kya aapka wajan bina kisi karan ghata hai? 1 dabayen haan ke liye, 2 dabayen nahi ke liye."
+        : lang === "ta-IN"
+        ? "Karanam illaamal unkal edai kurainjirukirataa? 1 aam, 2 illai."
+        : "Have you had unexplained weight loss? Press 1 for Yes, 2 for No.";
+
+    return xml(
+      gather(`${base}/api/ivrs?step=q3&lang=${lang}`, say(q3, lang))
+    );
+  }
+
+  // ── STEP q3: All done → result & hang up ─────────────────────────────────
+  const closing =
+    lang === "hi-IN"
+      ? "Aapka parikshan poora hua. Aapko T B ke lakshan milte hain. " +
+        "Kripya aaj hi apne nazdiki P H C jayen. Aarogya AI ka dhanyavaad."
       : lang === "ta-IN"
-      ? "Ungalukku 2 vaaram maelum irumal irukkirataa? Aam enraal 1, illai enraal 2."
-      : "Do you have cough for more than 2 weeks? Press 1 for Yes, 2 for No.";
+      ? "Ungal sodhanai mudinjirukirathu. T B alaamanikal kaanappagiren. " +
+        "Ungal arugilaana P H C vai indre sendru parunga. Nandri."
+      : "Your screening is complete. Possible T B symptoms detected. " +
+        "Please visit your nearest Primary Health Centre today. Thank you for using Aarogya AI.";
 
-    return `<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-  <Gather numDigits="1" action="/api/ivrs?step=q1&amp;lang=${lang}">
-    <Say language="${lang}">${q1}</Say>
-  </Gather>
-</Response>`;
-  }
-
-  // ── Question 2 ──
-  if (callSid.includes("q1")) {
-    const lang = new URL(`http://x.com?${callSid.split("?")[1]}`).searchParams.get("lang") || "en-IN";
-    const q2 = lang === "hi-IN"
-      ? "Kya aapko raat ko pasina aata hai? 1 haan, 2 nahi."
-      : "Do you have night sweats? Press 1 Yes, 2 No.";
-
-    return `<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-  <Gather numDigits="1" action="/api/ivrs?step=q2&amp;lang=${lang}">
-    <Say language="${lang}">${q2}</Say>
-  </Gather>
-</Response>`;
-  }
-
-  // ── Final result ──
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-  <Say language="hi-IN">
-    Aapka risk score UCCHA hai. 
-    T B ke lakshan milte hain.
-    Kripya aaj hi Ramnagar P H C jayen.
-    Aapko abhi S M S bheja ja raha hai.
-    Aarogya AI ka dhanyavaad.
-  </Say>
-  <Hangup/>
-</Response>`;
+  return xml(`  ${say(closing, lang)}\n  <Hangup/>`);
 }

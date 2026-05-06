@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { analyzeSymptoms } from "@/lib/dataset-engine";
 import { generateChatResponse } from "@/lib/groq";
 
 // Per-session chat history for the WhatsApp simulator
@@ -30,7 +31,23 @@ export async function POST(req: Request) {
     session.lang = lang;
     session.history.push({ role: "user", content: Body });
 
-    const aiResponse = await generateChatResponse(session.history, lang);
+    const datasetResponse = analyzeSymptoms(session.history, lang);
+
+    let aiResponse = datasetResponse;
+    try {
+      const groqResponse = await generateChatResponse(session.history, lang);
+      if (groqResponse?.content) {
+        aiResponse = {
+          ...datasetResponse,
+          content:          groqResponse.content,
+          detectedLanguage: groqResponse.detectedLanguage || lang,
+          riskScores:       datasetResponse.riskScores || groqResponse.riskScores,
+          report:           datasetResponse.report     || groqResponse.report,
+        };
+      }
+    } catch {
+      // Groq failed — use dataset response
+    }
 
     session.history.push({ role: "model", content: aiResponse.content });
     if (session.history.length > 10) session.history = session.history.slice(-10);

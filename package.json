@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed": "prisma db seed"
+    "seed": "prisma db seed",
+    "tunnel": "node start-tunnel.js"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -49,6 +50,7 @@
     "@types/twilio": "^3.19.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "ngrok": "^5.0.0-beta.2",
     "prisma": "^5.22.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",

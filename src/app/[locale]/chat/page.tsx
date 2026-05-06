@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mic, MicOff, Send, HeartPulse, UserCircle, MapPin, Activity, CheckCircle2, Volume2, VolumeX, AlertCircle, Sparkles, BrainCircuit, ShieldCheck, Stethoscope, Phone, FlaskConical, Pill, BookOpen, XCircle, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -275,47 +276,59 @@ export default function ChatPage() {
       {/* LEFT COLUMN: Main Chat Interface */}
       <div className="flex-1 flex flex-col relative z-10">
         {/* Header */}
-        <header className="h-20 bg-[#0f172a]/80 backdrop-blur-xl border-b border-white/5 px-8 flex justify-between items-center shrink-0">
-          <div className="flex items-center gap-4">
-            <div className="bg-gradient-to-br from-primary to-primary-container p-2.5 rounded-xl shadow-lg border border-primary/20">
-              <Sparkles className="w-6 h-6 text-white" />
+        <header className="bg-[#0f172a] border-b border-white/5 shrink-0">
+          <div className="px-8 h-20 flex items-center justify-between gap-6">
+            {/* Logo + Title */}
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="bg-gradient-to-br from-primary to-primary-container p-3 rounded-2xl shadow-lg border border-primary/20 shrink-0">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+              <div className="min-w-0">
+                <h1 className="font-extrabold text-xl tracking-tight text-white leading-tight">Aarogya AI</h1>
+                <span className="text-sm text-green-400 flex items-center gap-2 font-medium">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shrink-0"></span>
+                  {isSpeaking ? "Voice Assistant Speaking..." : "Live Connection"}
+                </span>
+              </div>
             </div>
-            <div>
-              <h1 className="font-bold text-2xl tracking-tight text-white">Aarogya AI Web Portal</h1>
-              <span className="text-sm text-green-400 flex items-center gap-2 font-medium">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                {isSpeaking ? "Voice Assistant Speaking..." : "Live Connection"}
-              </span>
+
+            {/* Nav tabs — centered */}
+            <div className="hidden lg:flex items-center gap-1 bg-slate-800/60 p-1.5 rounded-2xl border border-white/5 shrink-0">
+              <Link href={`/${locale}/chat`} className="px-5 py-2 bg-primary text-white text-sm font-bold rounded-xl shadow">Web Portal</Link>
+              <Link href={`/${locale}/whatsapp`} className="px-5 py-2 text-slate-400 hover:text-white hover:bg-slate-700/60 text-sm font-semibold rounded-xl transition-all">WhatsApp</Link>
+              <Link href={`/${locale}/ivrs`} className="px-5 py-2 text-slate-400 hover:text-white hover:bg-slate-700/60 text-sm font-semibold rounded-xl transition-all">IVRS Call</Link>
+              <Link href={`/${locale}/asha`} className="px-5 py-2 text-slate-400 hover:text-white hover:bg-slate-700/60 text-sm font-semibold rounded-xl transition-all">ASHA Dash</Link>
             </div>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={() => setIsMuted(!isMuted)} 
-              className="p-3 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors shadow-sm"
-              title={isMuted ? "Unmute Voice" : "Mute Voice"}
-            >
-              {isMuted ? <VolumeX className="w-5 h-5 text-slate-400" /> : <Volume2 className="w-5 h-5 text-primary" />}
-            </button>
-            <div className="relative">
-              <select 
-                className="appearance-none bg-slate-800 border border-white/10 text-white text-sm font-semibold rounded-xl pl-4 pr-10 py-3 outline-none cursor-pointer hover:bg-slate-700 transition-colors shadow-sm"
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
+
+            {/* Controls */}
+            <div className="flex items-center gap-3 shrink-0">
+              <button
+                onClick={() => setIsMuted(!isMuted)}
+                className="p-3 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors border border-white/5"
+                title={isMuted ? "Unmute Voice" : "Mute Voice"}
               >
-                <option value="English">English</option>
-                <option value="Hindi">हिंदी (Hindi)</option>
-                <option value="Kannada">ಕನ್ನಡ (Kannada)</option>
-                <option value="Tamil">தமிழ் (Tamil)</option>
-                <option value="Telugu">తెలుగు (Telugu)</option>
-                <option value="Malayalam">മലയാളം (Malayalam)</option>
-                <option value="Marathi">मराठी (Marathi)</option>
-                <option value="Bengali">বাংলা (Bengali)</option>
-                <option value="Gujarati">ગુજરાતી (Gujarati)</option>
-                <option value="Punjabi">ਪੰਜਾਬੀ (Punjabi)</option>
-                <option value="Odia">ଓଡ଼ିଆ (Odia)</option>
-              </select>
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none border-[5px] border-transparent border-t-white/50 mt-1"></div>
+                {isMuted ? <VolumeX className="w-5 h-5 text-slate-400" /> : <Volume2 className="w-5 h-5 text-primary" />}
+              </button>
+              <div className="relative">
+                <select
+                  className="appearance-none bg-slate-800 border border-white/10 text-white text-sm font-semibold rounded-xl pl-4 pr-10 py-3 outline-none cursor-pointer hover:bg-slate-700 transition-colors"
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                >
+                  <option value="English">English</option>
+                  <option value="Hindi">हिंदी</option>
+                  <option value="Kannada">ಕನ್ನಡ</option>
+                  <option value="Tamil">தமிழ்</option>
+                  <option value="Telugu">తెలుగు</option>
+                  <option value="Malayalam">മലയാളം</option>
+                  <option value="Marathi">मराठी</option>
+                  <option value="Bengali">বাংলা</option>
+                  <option value="Gujarati">ગુજરાતી</option>
+                  <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                  <option value="Odia">ଓଡ଼ିଆ</option>
+                </select>
+                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none border-[5px] border-transparent border-t-white/50 mt-1"></div>
+              </div>
             </div>
           </div>
         </header>

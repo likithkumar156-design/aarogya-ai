@@ -78,7 +78,7 @@ const PLACEHOLDERS = [
 
 export default function LandingPage() {
   const params = useParams();
-  const locale = (params?.locale as string) || "en-IN";
+  const locale = typeof params?.locale === 'string' ? params.locale : "en-IN";
 
   const [heroIndex, setHeroIndex] = useState(0);
   const [fadeState, setFadeState] = useState("fade-in");
@@ -140,12 +140,12 @@ export default function LandingPage() {
             <Link className="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Impact</Link>
             <Link className="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">About</Link>
           </div>
-          <button 
+          <Link 
             className="bg-primary hover:bg-primary-container text-on-primary px-5 py-2 rounded-xl font-medium transition-all active:scale-95 duration-150"
-            onClick={() => router.push(`/${locale}/chat`)}
+            href={`/${locale}/chat`}
           >
             Get Started
-          </button>
+          </Link>
         </nav>
       </header>
       <main>
@@ -438,10 +438,10 @@ export default function LandingPage() {
         {/* SECTION 4: LIVE DEMO LINKS */}
         <section className="bg-surface-container py-24 px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
               <div className="order-2 lg:order-1">
                 <div className="bg-slate-900 rounded-[2rem] p-4 shadow-2xl overflow-hidden border-4 border-slate-800">
-                  <Link href={`/${locale}/test`} className="block aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl relative group cursor-pointer overflow-hidden border border-white/10">
+                  <Link href={`/${locale}/chat`} className="block aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl relative group cursor-pointer overflow-hidden border border-white/10">
                     <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
@@ -451,33 +451,33 @@ export default function LandingPage() {
                   </Link>
                 </div>
               </div>
-              <div className="order-1 lg:order-2 space-y-8">
-                <h2 className="font-h2 text-4xl md:text-5xl font-bold text-on-surface">Experience the Interface</h2>
-                <p className="text-on-surface-variant font-body-lg text-lg">We've built Aarogya AI to live where the people are. Choose an interface to see how it bridges the digital divide.</p>
-                <div className="grid grid-cols-2 gap-4">
+              <div className="order-1 lg:order-2 space-y-6">
+                <h2 className="font-h2 text-2xl sm:text-3xl md:text-4xl font-bold text-on-surface leading-tight break-words">Experience the Interface</h2>
+                <p className="text-on-surface-variant font-body-lg text-sm sm:text-base md:text-lg leading-relaxed break-words">We've built Aarogya AI to live where the people are. Choose an interface to see how it bridges the digital divide.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Link href={`/${locale}/chat`} className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all group">
-                    <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10">
+                    <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 flex-shrink-0">
                       <span className="material-symbols-outlined text-secondary group-hover:text-primary">language</span>
                     </div>
-                    <span className="font-semibold text-sm text-on-surface">Web Chat</span>
+                    <span className="font-semibold text-sm text-on-surface break-words">Web Chat</span>
                   </Link>
                   <Link href={`/${locale}/whatsapp`} className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all group">
-                    <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10">
+                    <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 flex-shrink-0">
                       <span className="material-symbols-outlined text-secondary group-hover:text-primary">chat</span>
                     </div>
-                    <span className="font-semibold text-sm text-on-surface">WhatsApp</span>
+                    <span className="font-semibold text-sm text-on-surface break-words">WhatsApp</span>
                   </Link>
                   <Link href={`/${locale}/ivrs`} className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all group">
-                    <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10">
+                    <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 flex-shrink-0">
                       <span className="material-symbols-outlined text-secondary group-hover:text-primary">call</span>
                     </div>
-                    <span className="font-semibold text-sm text-on-surface">IVRS Call</span>
+                    <span className="font-semibold text-sm text-on-surface break-words">IVRS Call</span>
                   </Link>
                   <Link href={`/${locale}/asha`} className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-slate-200 hover:border-primary hover:shadow-lg transition-all group">
-                    <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10">
+                    <div className="p-2 rounded-lg bg-slate-50 group-hover:bg-primary/10 flex-shrink-0">
                       <span className="material-symbols-outlined text-secondary group-hover:text-primary">health_and_safety</span>
                     </div>
-                    <span className="font-semibold text-sm text-on-surface">ASHA Dash</span>
+                    <span className="font-semibold text-sm text-on-surface break-words">ASHA Dash</span>
                   </Link>
                 </div>
               </div>
@@ -663,7 +663,7 @@ export default function LandingPage() {
                 <p className="text-slate-400 font-body-lg">Join us in making healthcare a fundamental human right, accessible to anyone, anywhere, in any language.</p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <Link 
-                    href={`/${locale}/test`}
+                    href={`/${locale}/chat`}
                     className="bg-primary text-on-primary px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-primary/20 hover:bg-primary-container transition-all active:scale-95"
                   >
                     Launch Demo

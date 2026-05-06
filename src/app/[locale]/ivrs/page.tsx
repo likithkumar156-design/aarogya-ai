@@ -18,69 +18,110 @@ const LANG_OPTIONS = [
 interface ScriptStep {
   speaker: "IVR" | "USER";
   text: string;
+  romanized?: string; // For browser TTS fallback
   delay: number;
 }
 
 const SCRIPTS: Record<Language, ScriptStep[]> = {
   "hi-IN": [
-    { speaker: "IVR",  text: "Aarogya AI mein swagat hai. Apni bhasha chunne ke liye number dabayen.", delay: 1000 },
-    { speaker: "USER", text: "1 dabaya — Hindi", delay: 4000 },
-    { speaker: "IVR",  text: "Namaste! Kya aapko 2 hafte se zyada khansi hai?", delay: 6000 },
-    { speaker: "USER", text: "1 dabaya — Haan", delay: 10000 },
-    { speaker: "IVR",  text: "Kya aapko raat ko pasina aata hai?", delay: 12000 },
-    { speaker: "USER", text: "1 dabaya — Haan", delay: 16000 },
-    { speaker: "IVR",  text: "Kya aapka wajan kam hua hai?", delay: 18000 },
-    { speaker: "USER", text: "1 dabaya — Haan", delay: 22000 },
-    { speaker: "IVR",  text: "Aapka risk score UCCHA hai. TB ke lakshan hain. Ramnagar PHC jayen. SMS bheja ja raha hai.", delay: 24000 },
+    { speaker: "IVR",  text: "Aarogya AI mein swagat hai. Hindi ke liye 1, English ke liye 2, Tamil ke liye 3, Telugu ke liye 4, Kannada ke liye 5, Bengali ke liye 6 dabayen.", delay: 1000 },
+    { speaker: "USER", text: "1 dabaya — Hindi", delay: 6000 },
+    { speaker: "IVR",  text: "Namaste! Kya aapko 2 hafte se zyada khansi hai? Haan ke liye 1, Nahi ke liye 2 dabayen.", delay: 8000 },
+    { speaker: "USER", text: "1 dabaya — Haan", delay: 13000 },
+    { speaker: "IVR",  text: "Kya aapko raat ko pasina aata hai? Haan ke liye 1, Nahi ke liye 2 dabayen.", delay: 15000 },
+    { speaker: "USER", text: "1 dabaya — Haan", delay: 20000 },
+    { speaker: "IVR",  text: "Kya aapka wajan kam hua hai? Haan ke liye 1, Nahi ke liye 2 dabayen.", delay: 22000 },
+    { speaker: "USER", text: "1 dabaya — Haan", delay: 27000 },
+    { speaker: "IVR",  text: "Kya aapko bukhar hai? Haan ke liye 1, Nahi ke liye 2 dabayen.", delay: 29000 },
+    { speaker: "USER", text: "1 dabaya — Haan", delay: 34000 },
+    { speaker: "IVR",  text: "Kya aapko saans lene mein takleef hai? Haan ke liye 1, Nahi ke liye 2 dabayen.", delay: 36000 },
+    { speaker: "USER", text: "1 dabaya — Haan", delay: 41000 },
+    { speaker: "IVR",  text: "Aapka risk score UCCHA hai. TB ke lakshan hain. Turant Ramnagar PHC jayen. SMS bheja ja raha hai. Dhanyavaad.", delay: 43000 },
   ],
   "en-IN": [
-    { speaker: "IVR",  text: "Welcome to Aarogya AI. Press your language number.", delay: 1000 },
-    { speaker: "USER", text: "Pressed 2 — English", delay: 4000 },
-    { speaker: "IVR",  text: "Hello! Do you have cough for more than 2 weeks?", delay: 6000 },
-    { speaker: "USER", text: "Pressed 1 — Yes", delay: 10000 },
-    { speaker: "IVR",  text: "Do you have night sweats?", delay: 12000 },
-    { speaker: "USER", text: "Pressed 1 — Yes", delay: 16000 },
-    { speaker: "IVR",  text: "Have you lost weight recently?", delay: 18000 },
-    { speaker: "USER", text: "Pressed 1 — Yes", delay: 22000 },
-    { speaker: "IVR",  text: "Your risk is HIGH. TB symptoms detected. Visit Ramnagar PHC today. SMS sent.", delay: 24000 },
+    { speaker: "IVR",  text: "Welcome to Aarogya AI. Press 1 for Hindi, 2 for English, 3 for Tamil, 4 for Telugu, 5 for Kannada, 6 for Bengali.", delay: 1000 },
+    { speaker: "USER", text: "Pressed 2 — English", delay: 6000 },
+    { speaker: "IVR",  text: "Hello! Do you have cough for more than 2 weeks? Press 1 for Yes, 2 for No.", delay: 8000 },
+    { speaker: "USER", text: "Pressed 1 — Yes", delay: 13000 },
+    { speaker: "IVR",  text: "Do you have night sweats? Press 1 for Yes, 2 for No.", delay: 15000 },
+    { speaker: "USER", text: "Pressed 1 — Yes", delay: 20000 },
+    { speaker: "IVR",  text: "Have you lost weight recently? Press 1 for Yes, 2 for No.", delay: 22000 },
+    { speaker: "USER", text: "Pressed 1 — Yes", delay: 27000 },
+    { speaker: "IVR",  text: "Do you have fever? Press 1 for Yes, 2 for No.", delay: 29000 },
+    { speaker: "USER", text: "Pressed 1 — Yes", delay: 34000 },
+    { speaker: "IVR",  text: "Do you have difficulty breathing? Press 1 for Yes, 2 for No.", delay: 36000 },
+    { speaker: "USER", text: "Pressed 1 — Yes", delay: 41000 },
+    { speaker: "IVR",  text: "Your risk is HIGH. TB symptoms detected. Please visit Ramnagar PHC immediately. SMS sent. Thank you.", delay: 43000 },
   ],
   "ta-IN": [
-    { speaker: "IVR",  text: "Aarogya AI வரவேற்கிறது. உங்கள் மொழியை தேர்ந்தெடுக்கவும்.", delay: 1000 },
-    { speaker: "USER", text: "3 அழுத்தினார் — Tamil", delay: 4000 },
-    { speaker: "IVR",  text: "வணக்கம்! உங்களுக்கு 2 வாரத்திற்கும் மேல் இருமல் உள்ளதா?", delay: 6000 },
-    { speaker: "USER", text: "1 அழுத்தினார் — ஆம்", delay: 10000 },
-    { speaker: "IVR",  text: "உங்கள் ஆபத்து அதிகம். PHC செல்லுங்கள். SMS அனுப்பப்பட்டது.", delay: 12000 },
+    { speaker: "IVR",  text: "Aarogya AI வரவேற்கிறது. Hindi க்கு 1, English க்கு 2, Tamil க்கு 3, Telugu க்கு 4, Kannada க்கு 5, Bengali க்கு 6 அழுத்தவும்.", delay: 1000 },
+    { speaker: "USER", text: "3 அழுத்தினார் — Tamil", delay: 6000 },
+    { speaker: "IVR",  text: "வணக்கம்! உங்களுக்கு 2 வாரத்திற்கும் மேல் இருமல் உள்ளதா? ஆம் என்றால் 1, இல்லை என்றால் 2 அழுத்தவும்.", delay: 8000 },
+    { speaker: "USER", text: "1 அழுத்தினார் — ஆம்", delay: 13000 },
+    { speaker: "IVR",  text: "இரவில் வியர்க்கிறதா? ஆம் என்றால் 1, இல்லை என்றால் 2 அழுத்தவும்.", delay: 15000 },
+    { speaker: "USER", text: "1 அழுத்தினார் — ஆம்", delay: 20000 },
+    { speaker: "IVR",  text: "எடை குறைந்துள்ளதா? ஆம் என்றால் 1, இல்லை என்றால் 2 அழுத்தவும்.", delay: 22000 },
+    { speaker: "USER", text: "1 அழுத்தினார் — ஆம்", delay: 27000 },
+    { speaker: "IVR",  text: "காய்ச்சல் உள்ளதா? ஆம் என்றால் 1, இல்லை என்றால் 2 அழுத்தவும்.", delay: 29000 },
+    { speaker: "USER", text: "1 அழுத்தினார் — ஆம்", delay: 34000 },
+    { speaker: "IVR",  text: "மூச்சு விடுவதில் சிரமம் உள்ளதா? ஆம் என்றால் 1, இல்லை என்றால் 2 அழுத்தவும்.", delay: 36000 },
+    { speaker: "USER", text: "1 அழுத்தினார் — ஆம்", delay: 41000 },
+    { speaker: "IVR",  text: "உங்கள் ஆபத்து அதிகம். TB அறிகுறிகள் உள்ளன. உடனடியாக Ramnagar PHC செல்லுங்கள். SMS அனுப்பப்பட்டது. நன்றி.", delay: 43000 },
   ],
   "te-IN": [
-    { speaker: "IVR",  text: "Aarogya AI కి స్వాగతం. మీ భాష నొక్కండి.", delay: 1000 },
-    { speaker: "USER", text: "4 నొక్కారు — Telugu", delay: 4000 },
-    { speaker: "IVR",  text: "నమస్కారం! మీకు 2 వారాల పైగా దగ్గు ఉందా?", delay: 6000 },
-    { speaker: "USER", text: "1 నొక్కారు — అవును", delay: 10000 },
-    { speaker: "IVR",  text: "మీ రిస్క్ HIGH. PHC వెళ్ళండి. SMS పంపబడింది.", delay: 12000 },
+    { speaker: "IVR",  text: "Aarogya AI కి స్వాగతం. Hindi కి 1, English కి 2, Tamil కి 3, Telugu కి 4, Kannada కి 5, Bengali కి 6 నొక్కండి.", delay: 1000 },
+    { speaker: "USER", text: "4 నొక్కారు — Telugu", delay: 6000 },
+    { speaker: "IVR",  text: "నమస్కారం! మీకు 2 వారాల పైగా దగ్గు ఉందా? అవును కోసం 1, కాదు కోసం 2 నొక్కండి.", delay: 8000 },
+    { speaker: "USER", text: "1 నొక్కారు — అవును", delay: 13000 },
+    { speaker: "IVR",  text: "రాత్రి చెమటలు వస్తున్నాయా? అవును కోసం 1, కాదు కోసం 2 నొక్కండి.", delay: 15000 },
+    { speaker: "USER", text: "1 నొక్కారు — అవును", delay: 20000 },
+    { speaker: "IVR",  text: "బరువు తగ్గిందా? అవును కోసం 1, కాదు కోసం 2 నొక్కండి.", delay: 22000 },
+    { speaker: "USER", text: "1 నొక్కారు — అవును", delay: 27000 },
+    { speaker: "IVR",  text: "జ్వరం ఉందా? అవును కోసం 1, కాదు కోసం 2 నొక్కండి.", delay: 29000 },
+    { speaker: "USER", text: "1 నొక్కారు — అవును", delay: 34000 },
+    { speaker: "IVR",  text: "శ్వాస తీసుకోవడంలో ఇబ్బంది ఉందా? అవును కోసం 1, కాదు కోసం 2 నొక్కండి.", delay: 36000 },
+    { speaker: "USER", text: "1 నొక్కారు — అవును", delay: 41000 },
+    { speaker: "IVR",  text: "మీ రిస్క్ HIGH. TB లక్షణాలు ఉన్నాయి. వెంటనే Ramnagar PHC వెళ్ళండి. SMS పంపబడింది. ధన్యవాదాలు.", delay: 43000 },
   ],
   "kn-IN": [
-    { speaker: "IVR",  text: "Aarogya AI ಗೆ ಸ್ವಾಗತ. ನಿಮ್ಮ ಭಾಷೆ ಆಯ್ಕೆ ಮಾಡಿ.", delay: 1000 },
-    { speaker: "USER", text: "5 ಒತ್ತಿದರು — Kannada", delay: 4000 },
-    { speaker: "IVR",  text: "ನಮಸ್ಕಾರ! ನಿಮಗೆ 2 ವಾರಗಳಿಗಿಂತ ಹೆಚ್ಚು ಕೆಮ್ಮು ಇದೆಯೇ?", delay: 6000 },
-    { speaker: "USER", text: "1 ಒತ್ತಿದರು — ಹೌದು", delay: 10000 },
-    { speaker: "IVR",  text: "ನಿಮ್ಮ ರಿಸ್ಕ್ HIGH. PHC ಗೆ ಹೋಗಿ. SMS ಕಳುಹಿಸಲಾಗಿದೆ.", delay: 12000 },
+    { speaker: "IVR",  text: "Aarogya AI ಗೆ ಸ್ವಾಗತ. Hindi ಗೆ 1, English ಗೆ 2, Tamil ಗೆ 3, Telugu ಗೆ 4, Kannada ಗೆ 5, Bengali ಗೆ 6 ಒತ್ತಿರಿ.", delay: 1000 },
+    { speaker: "USER", text: "5 ಒತ್ತಿದರು — Kannada", delay: 6000 },
+    { speaker: "IVR",  text: "ನಮಸ್ಕಾರ! ನಿಮಗೆ 2 ವಾರಗಳಿಗಿಂತ ಹೆಚ್ಚು ಕೆಮ್ಮು ಇದೆಯೇ? ಹೌದು ಗೆ 1, ಇಲ್ಲ ಗೆ 2 ಒತ್ತಿರಿ.", delay: 8000 },
+    { speaker: "USER", text: "1 ಒತ್ತಿದರು — ಹೌದು", delay: 13000 },
+    { speaker: "IVR",  text: "ರಾತ್ರಿ ಬೆವರು ಬರುತ್ತಿದೆಯೇ? ಹೌದು ಗೆ 1, ಇಲ್ಲ ಗೆ 2 ಒತ್ತಿರಿ.", delay: 15000 },
+    { speaker: "USER", text: "1 ಒತ್ತಿದರು — ಹೌದು", delay: 20000 },
+    { speaker: "IVR",  text: "ತೂಕ ಕಡಿಮೆಯಾಗಿದೆಯೇ? ಹೌದು ಗೆ 1, ಇಲ್ಲ ಗೆ 2 ಒತ್ತಿರಿ.", delay: 22000 },
+    { speaker: "USER", text: "1 ಒತ್ತಿದರು — ಹೌದು", delay: 27000 },
+    { speaker: "IVR",  text: "ಜ್ವರ ಇದೆಯೇ? ಹೌದು ಗೆ 1, ಇಲ್ಲ ಗೆ 2 ಒತ್ತಿರಿ.", delay: 29000 },
+    { speaker: "USER", text: "1 ಒತ್ತಿದರು — ಹೌದು", delay: 34000 },
+    { speaker: "IVR",  text: "ಉಸಿರಾಡಲು ಕಷ್ಟವಾಗುತ್ತಿದೆಯೇ? ಹೌದು ಗೆ 1, ಇಲ್ಲ ಗೆ 2 ಒತ್ತಿರಿ.", delay: 36000 },
+    { speaker: "USER", text: "1 ಒತ್ತಿದರು — ಹೌದು", delay: 41000 },
+    { speaker: "IVR",  text: "ನಿಮ್ಮ ರಿಸ್ಕ್ HIGH. TB ಲಕ್ಷಣಗಳು ಇವೆ. ತಕ್ಷಣ Ramnagar PHC ಗೆ ಹೋಗಿ. SMS ಕಳುಹಿಸಲಾಗಿದೆ. ಧನ್ಯವಾದಗಳು.", delay: 43000 },
   ],
   "bn-IN": [
-    { speaker: "IVR",  text: "Aarogya AI তে স্বাগতম। আপনার ভাষা চাপুন।", delay: 1000 },
-    { speaker: "USER", text: "6 চাপলেন — Bengali", delay: 4000 },
-    { speaker: "IVR",  text: "নমস্কার! আপনার ২ সপ্তাহের বেশি কাশি আছে?", delay: 6000 },
-    { speaker: "USER", text: "1 চাপলেন — হ্যাঁ", delay: 10000 },
-    { speaker: "IVR",  text: "আপনার ঝুঁকি HIGH। PHC যান। SMS পাঠানো হয়েছে।", delay: 12000 },
+    { speaker: "IVR",  text: "Aarogya AI তে স্বাগতম। Hindi এর জন্য 1, English এর জন্য 2, Tamil এর জন্য 3, Telugu এর জন্য 4, Kannada এর জন্য 5, Bengali এর জন্য 6 চাপুন।", delay: 1000 },
+    { speaker: "USER", text: "6 চাপলেন — Bengali", delay: 6000 },
+    { speaker: "IVR",  text: "নমস্কার! আপনার ২ সপ্তাহের বেশি কাশি আছে? হ্যাঁ এর জন্য 1, না এর জন্য 2 চাপুন।", delay: 8000 },
+    { speaker: "USER", text: "1 চাপলেন — হ্যাঁ", delay: 13000 },
+    { speaker: "IVR",  text: "রাতে ঘাম হয়? হ্যাঁ এর জন্য 1, না এর জন্য 2 চাপুন।", delay: 15000 },
+    { speaker: "USER", text: "1 চাপলেন — হ্যাঁ", delay: 20000 },
+    { speaker: "IVR",  text: "ওজন কমেছে? হ্যাঁ এর জন্য 1, না এর জন্য 2 চাপুন।", delay: 22000 },
+    { speaker: "USER", text: "1 চাপলেন — হ্যাঁ", delay: 27000 },
+    { speaker: "IVR",  text: "জ্বর আছে? হ্যাঁ এর জন্য 1, না এর জন্য 2 চাপুন।", delay: 29000 },
+    { speaker: "USER", text: "1 চাপলেন — হ্যাঁ", delay: 34000 },
+    { speaker: "IVR",  text: "শ্বাস নিতে কষ্ট হয়? হ্যাঁ এর জন্য 1, না এর জন্য 2 চাপুন।", delay: 36000 },
+    { speaker: "USER", text: "1 চাপলেন — হ্যাঁ", delay: 41000 },
+    { speaker: "IVR",  text: "আপনার ঝুঁকি HIGH। TB লক্ষণ আছে। অবিলম্বে Ramnagar PHC যান। SMS পাঠানো হয়েছে। ধন্যবাদ।", delay: 43000 },
   ],
 };
 
 const SMS: Record<Language, string> = {
-  "hi-IN": "🏥 AAROGYA AI\nRisk: HIGH - TB\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX\nHelpline: 1800-111-2222",
-  "en-IN": "🏥 AAROGYA AI\nRisk: HIGH - TB\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX\nHelpline: 1800-111-2222",
-  "ta-IN": "🏥 AAROGYA AI\nஆபத்து: HIGH - TB\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX",
-  "te-IN": "🏥 AAROGYA AI\nరిస్క్: HIGH - TB\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX",
-  "kn-IN": "🏥 AAROGYA AI\nರಿಸ್ಕ್: HIGH - TB\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX",
-  "bn-IN": "🏥 AAROGYA AI\nঝুঁকি: HIGH - TB\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX",
+  "hi-IN": "🏥 AAROGYA AI\nRisk: HIGH - TB\n5/5 symptoms matched\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX\nHelpline: 1800-111-2222",
+  "en-IN": "🏥 AAROGYA AI\nRisk: HIGH - TB\n5/5 symptoms matched\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX\nHelpline: 1800-111-2222",
+  "ta-IN": "🏥 AAROGYA AI\nஆபத்து: HIGH - TB\n5/5 அறிகுறிகள்\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX",
+  "te-IN": "🏥 AAROGYA AI\nరిస్క్: HIGH - TB\n5/5 లక్షణాలు\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX",
+  "kn-IN": "🏥 AAROGYA AI\nರಿಸ್ಕ್: HIGH - TB\n5/5 ಲಕ್ಷಣಗಳು\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX",
+  "bn-IN": "🏥 AAROGYA AI\nঝুঁকি: HIGH - TB\n5/5 লক্ষণ\nPHC: Ramnagar (3.5km)\nABHA: AB-2847-XXXX",
 };
 
 export default function IVRSPage() {
@@ -97,6 +138,7 @@ export default function IVRSPage() {
   const timeoutsRef    = useRef<ReturnType<typeof setTimeout>[]>([]);
   const timerRef       = useRef<ReturnType<typeof setInterval> | null>(null);
   const transcriptEnd  = useRef<HTMLDivElement>(null);
+  const audioRef       = useRef<HTMLAudioElement | null>(null);
 
   // Clock
   useEffect(() => {
@@ -126,8 +168,35 @@ export default function IVRSPage() {
   const fmt = (s: number) =>
     `${Math.floor(s / 60).toString().padStart(2, "0")}:${(s % 60).toString().padStart(2, "0")}`;
 
-  const speak = (text: string, lang: Language) => {
-    if (!("speechSynthesis" in window)) return;
+  const speak = async (text: string, lang: Language) => {
+    setIsSpeaking(true);
+    setWaveActive(true);
+
+    try {
+      const res = await fetch("/api/sarvam", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text, target_language_code: lang }),
+      });
+      const data = await res.json();
+
+      if (data.audio) {
+        const audio = new Audio(data.audio);
+        audioRef.current = audio;
+        audio.onended = () => { setIsSpeaking(false); setWaveActive(false); };
+        audio.onerror = () => browserSpeak(text, lang);
+        await audio.play();
+        return;
+      }
+    } catch {
+      // fall through to browser TTS
+    }
+
+    browserSpeak(text, lang);
+  };
+
+  const browserSpeak = (text: string, lang: Language) => {
+    if (!("speechSynthesis" in window)) { setIsSpeaking(false); setWaveActive(false); return; }
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang  = lang;
@@ -167,16 +236,18 @@ export default function IVRSPage() {
     // End call after last message
     const endT = setTimeout(() => {
       window.speechSynthesis?.cancel();
+      if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
       setCallState("ENDED");
       setShowRisk(true);
       setTimeout(() => setShowSMS(true), 1500);
-    }, lastDelay + 5000);
+    }, lastDelay + 6000);
     timeoutsRef.current.push(endT);
   };
 
   const endCall = () => {
     timeoutsRef.current.forEach(clearTimeout);
     timeoutsRef.current = [];
+    if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
     window.speechSynthesis?.cancel();
     setIsSpeaking(false);
     setWaveActive(false);
@@ -188,6 +259,7 @@ export default function IVRSPage() {
   const reset = () => {
     timeoutsRef.current.forEach(clearTimeout);
     timeoutsRef.current = [];
+    if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
     window.speechSynthesis?.cancel();
     setCallState("IDLE");
     setTranscript([]);
@@ -407,7 +479,7 @@ export default function IVRSPage() {
                     <p className="text-white font-medium text-lg mb-1">TB (Tuberculosis)</p>
                     <div className="bg-black/20 rounded-lg p-2 mb-3">
                       <p className="text-slate-300 text-xs flex items-center gap-2">
-                        <span className="text-red-400">⚠</span> 3 out of 3 major symptoms matched
+                        <span className="text-red-400">⚠</span> 5 out of 5 major symptoms matched
                       </p>
                     </div>
                     <p className="text-slate-400 text-xs bg-slate-900 rounded-lg p-2 border border-white/5 inline-flex items-center gap-2">
