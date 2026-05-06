@@ -5,20 +5,13 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { HeartPulse } from "lucide-react";
 
-// Brand logo SVG components
+// Brand logo image components
 const SarvamAILogo = () => (
-  <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" rx="16" fill="#8B5CF6"/>
-    <text x="50" y="68" textAnchor="middle" fontSize="52" fontWeight="bold" fill="white" fontFamily="sans-serif">S</text>
-  </svg>
+  <img src="/logo-sarvam.png" alt="Sarvam AI" className="w-8 h-8 object-contain" />
 );
 
 const AbdmLogo = () => (
-  <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" rx="16" fill="#1B5E20"/>
-    <path d="M50 20 L50 80 M30 50 L70 50" stroke="white" strokeWidth="10" strokeLinecap="round"/>
-    <circle cx="50" cy="50" r="28" stroke="white" strokeWidth="6" fill="none"/>
-  </svg>
+  <img src="/logo-abdm.png" alt="ABDM" className="w-8 h-8 object-contain" />
 );
 
 const TwilioLogo = () => (
@@ -75,6 +68,7 @@ export default function LandingPage() {
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [riskWidth, setRiskWidth] = useState(0);
   const [showAiResponse, setShowAiResponse] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -156,13 +150,13 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">
-                <Link 
-                  href={`/${locale}/chat`}
+                <button
+                  onClick={() => setShowVideo(true)}
                   className="bg-primary text-on-primary px-8 py-4 rounded-xl font-semibold flex items-center gap-2 shadow-xl hover:shadow-primary/20 transition-all active:scale-95 pulse-glow"
                 >
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_circle</span>
-                  Try Live Demo
-                </Link>
+                  Watch Demo
+                </button>
                 <Link 
                   href={`/${locale}/whatsapp`}
                   className="border-2 border-primary text-primary px-8 py-4 rounded-xl font-semibold flex items-center gap-2 hover:bg-primary/5 transition-all active:scale-95"
@@ -493,13 +487,7 @@ export default function LandingPage() {
               {/* Node 2: Sarvam AI — STT + Translation */}
               <div className="flex flex-col items-center gap-3 z-10 shrink-0">
                 <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center border-2 border-primary/30 shadow-lg p-2">
-                  <img
-                    src="https://logo.clearbit.com/sarvam.ai"
-                    alt="Sarvam AI"
-                    className="w-full h-full object-contain"
-                    onError={(e) => { (e.target as HTMLImageElement).style.display='none'; (e.target as HTMLImageElement).nextElementSibling!.classList.remove('hidden'); }}
-                  />
-                  <span className="hidden font-black text-2xl text-primary">S</span>
+                  <img src="/logo-sarvam.png" alt="Sarvam AI" className="w-full h-full object-contain" />
                 </div>
                 <p className="font-label-caps text-xs font-bold text-on-surface tracking-wider">Sarvam AI</p>
                 <p className="text-[10px] text-on-surface-variant -mt-2">STT + Translation</p>
@@ -511,13 +499,7 @@ export default function LandingPage() {
               {/* Node 3: Groq AI — Medical LLM */}
               <div className="flex flex-col items-center gap-3 z-10 shrink-0">
                 <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center border-2 border-primary/30 shadow-lg p-2">
-                  <img
-                    src="https://logo.clearbit.com/groq.com"
-                    alt="Groq AI"
-                    className="w-full h-full object-contain"
-                    onError={(e) => { (e.target as HTMLImageElement).style.display='none'; (e.target as HTMLImageElement).nextElementSibling!.classList.remove('hidden'); }}
-                  />
-                  <span className="hidden material-symbols-outlined text-2xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>bolt</span>
+                  <img src="/logo-groq.png" alt="Groq AI" className="w-full h-full object-contain rounded-xl" />
                 </div>
                 <p className="font-label-caps text-xs font-bold text-on-surface tracking-wider">Groq AI</p>
                 <p className="text-[10px] text-on-surface-variant -mt-2">Symptom Analysis</p>
@@ -544,11 +526,8 @@ export default function LandingPage() {
 
               {/* Node 5: ABDM / PHC Locator */}
               <div className="flex flex-col items-center gap-3 z-10 shrink-0">
-                <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center border-2 border-primary/30 shadow-lg">
-                  <div className="flex flex-col items-center gap-1">
-                    <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>local_hospital</span>
-                    <span className="text-xs font-bold text-primary tracking-tight">ABDM</span>
-                  </div>
+                <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center border-2 border-primary/30 shadow-lg p-1">
+                  <img src="/logo-abdm.png" alt="ABDM" className="w-full h-full object-contain" />
                 </div>
                 <p className="font-label-caps text-xs font-bold text-on-surface tracking-wider">ABDM / PHC</p>
                 <p className="text-[10px] text-on-surface-variant -mt-2">Health ID + Booking</p>
@@ -559,8 +538,8 @@ export default function LandingPage() {
 
               {/* Node 6: ASHA Worker Dashboard */}
               <div className="flex flex-col items-center gap-3 z-10 shrink-0">
-                <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center border-2 border-primary/30 shadow-lg">
-                  <span className="material-symbols-outlined text-6xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>health_and_safety</span>
+                <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center border-2 border-primary/30 shadow-lg p-1">
+                  <img src="/logo-asha.png" alt="ASHA / NHM" className="w-full h-full object-contain" />
                 </div>
                 <p className="font-label-caps text-xs font-bold text-on-surface tracking-wider">ASHA Worker</p>
                 <p className="text-[10px] text-on-surface-variant -mt-2">Alert Dashboard</p>
@@ -737,6 +716,38 @@ export default function LandingPage() {
           <div className="text-on-surface-variant text-sm">© 2026 Aarogya AI. Made with ❤️ in India</div>
         </div>
       </footer>
+
+      {/* ── Video Demo Modal ── */}
+      {showVideo && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setShowVideo(false)}
+        >
+          <div
+            className="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setShowVideo(false)}
+              className="absolute top-3 right-3 z-10 w-9 h-9 bg-black/60 hover:bg-black/80 rounded-full flex items-center justify-center transition-all"
+            >
+              <span className="material-symbols-outlined text-white text-xl">close</span>
+            </button>
+
+            {/* YouTube embed — replace VIDEO_ID with your actual demo video ID */}
+            <div className="aspect-video w-full">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0"
+                title="Aarogya AI Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
