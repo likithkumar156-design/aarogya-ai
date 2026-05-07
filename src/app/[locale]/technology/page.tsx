@@ -119,7 +119,7 @@ export default async function TechnologyPage(props: { params: Promise<{ locale: 
                     <strong className="text-[#111827] font-bold text-lg">Groq (Llama 3.3)</strong>
                   </div>
                   <p className="text-slate-500 text-sm leading-relaxed">
-                    Ultra-fast LLM inference (< 1s) for high-availability medical reasoning.
+                    Ultra-fast LLM inference (&lt; 1s) for high-availability medical reasoning.
                   </p>
                 </div>
 
